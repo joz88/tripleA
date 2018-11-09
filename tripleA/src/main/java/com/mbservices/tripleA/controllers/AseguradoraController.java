@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -27,7 +28,7 @@ public class AseguradoraController {
 	}
 	
 	@RequestMapping(value="/form")
-	private String crear(Model model) {
+	public String crear(Model model) {
 		Aseguradora aseguradora = new Aseguradora();
 		model.addAttribute("titulo","FormularioAseguradora");
 		model.addAttribute("aseguradora", aseguradora);
@@ -36,11 +37,32 @@ public class AseguradoraController {
 	}
 
 	@RequestMapping(value="/form",method=RequestMethod.POST)
-	private String save(@Valid Aseguradora aseguradora,BindingResult result) {
+	public String save(@Valid Aseguradora aseguradora,BindingResult result) {
 		if(result.hasErrors()){
 			return "aseguradora/form";
 		}
 		dao.save(aseguradora);
+		return "redirect:listar";
+	}
+	
+	@RequestMapping(value="/form/{id}")
+	public String edit(@PathVariable Long id, Model model) {
+		Aseguradora aseguradora=null;
+		if(id>0){
+			aseguradora=dao.findById(id);
+		}else{
+			return "redirect:listar";
+		}
+		model.addAttribute("titulo","FormularioAseguradora");
+		model.addAttribute("aseguradora", aseguradora);
+		return "aseguradora/form";
+	}
+	
+	@RequestMapping(value="/eliminar/{id}")
+	public String delete(@PathVariable Long id){
+		if(id>0){
+			dao.delete(id);
+		}
 		return "redirect:listar";
 	}
 }

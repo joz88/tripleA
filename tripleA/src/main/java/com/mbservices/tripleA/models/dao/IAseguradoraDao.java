@@ -10,5 +10,8 @@ public interface IAseguradoraDao {
 
 	public void save(Aseguradora aseguradora);
 	
+	public Aseguradora findById(Long id);
+	
+	public void delete(Long id);
 	
 }

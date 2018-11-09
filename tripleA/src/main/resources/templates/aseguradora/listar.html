@@ -20,6 +20,8 @@
 					<th>nombre</th>
 					<th>RFC</th>
 					<th>razon Social</th>
+					<th>editar</th>
+					<th>eliminar</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -28,6 +30,8 @@
 					<td th:text="${aseguradora.nombre}"></td>
 					<td th:text="${aseguradora.RFC}"></td>
 					<td th:text="${aseguradora.razonSocial}"></td>
+					<td><a class="btn btn-primary btn-xs" th:href="@{/aseguradora/form/}+${aseguradora.id}" th:text="editar"><a></a></td>
+					<td><a class="btn btn-danger btn-xs" th:href="@{/aseguradora/eliminar/}+${aseguradora.id}" th:text="eliminar"><a></a></td>
 				</tr>
 			</tbody>
 		</table>

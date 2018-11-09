@@ -16,18 +16,35 @@ public class AseguradoraDaoImpl implements IAseguradoraDao {
 
 	@PersistenceContext
 	private EntityManager em;
-	
+
 	@SuppressWarnings("unchecked")
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	@Override
 	public List<Aseguradora> findAll() {
 		return em.createQuery("from Aseguradora").getResultList();
 	}
 
 	@Override
+	@Transactional(readOnly = true)
+	public Aseguradora findById(Long id) {
+		return em.find(Aseguradora.class, id);
+	}
+
+	@Override
 	@Transactional
 	public void save(Aseguradora aseguradora) {
-		em.persist(aseguradora);
+		if (aseguradora.getId() != null & aseguradora.getId() > 0) {
+			em.merge(aseguradora);
+		} else {
+			em.persist(aseguradora);
+		}
+	}
+
+	@Override
+	@Transactional
+	public void delete(Long id) {
+		Aseguradora aseguradora = this.findById(id);
+		em.remove(aseguradora);
 	}
 
 }
