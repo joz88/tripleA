@@ -1,12 +1,21 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="HTML/index :: head">
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+<header th:replace="HTML/index :: header" ></header>
+<sidebar th:replace="HTML/index :: sidebar"></sidebar>
+<div id="content">
+<div th:replace="HTML/index :: content-header"></div>
 
 
-prueba
+contenido para pruebas
+
+
+</div>
+
+<footer th:replace="HTML/index :: footer"></footer>
 </body>
 </html>

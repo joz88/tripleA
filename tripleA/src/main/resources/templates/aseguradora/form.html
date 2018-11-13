@@ -1,56 +1,71 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-	crossorigin="anonymous">
+<head th:replace="HTML/index :: head">
 <meta charset="UTF-8">
 <title th:text="${titulo}">Insert title here</title>
 </head>
 <body>
-	<div class="container">
-		<h1
-			class="text-gray-dark border border-success border-top-0 border-left-0 border-right-0"
-			th:text="${titulo}"></h1>
-		<form th:action="@{/aseguradora/form}" th:object="${aseguradora}"
-			method="post">
+<header th:replace="HTML/index :: header" ></header>
+<sidebar th:replace="HTML/index :: sidebar"></sidebar>
+<div id="content">
+<div th:replace="HTML/index :: content-header"></div>
+		
+		
+		    <div class="container-fluid">
+  <hr>
+  <div class="row-fluid">
+    <div class="span6">
+      <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5 th:text="${titulo}">Personal-info</h5>
+        </div>
+        <div class="widget-content nopadding">
+		
+		
+		
+		<form class="form-horizontal" th:action="@{/aseguradora/form}" th:object="${aseguradora}"method="post">
 
 
 			<input type="hidden" th:field="*{id}" />
 
-			<div class="form-group row">
-				<label class="col-sm-2 form-col-label">Nombre</label>
-				<div class="col-sm-6 ">
-					<input type="text" th:field="*{nombre}" class="form-control" th:errorclass="alert-danger"/>
+			<div class="control-group">
+				<label class="control-label">Nombre</label>
+				<div class="controls">
+					<input type="text" th:field="*{nombre}" class="span11" th:errorclass="error"/>
 					<small class="form-text text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"> </small>
 				</div>
 			</div>
-			<div class="form-group row">
-				<label class="col-sm-2 form-col-label">RFC</label>
-				<div class="col-sm-6 ">
-					<input type="text" th:field="*{RFC}" class="form-control" th:errorClass="alert-danger" />
+			<div class="control-group">
+				<label class="control-label">RFC</label>
+				<div class="controls">
+					<input type="text" th:field="*{RFC}" class="span11" th:errorClass="alert-danger" />
 					<small class="form-text text-danger" th:if="${#fields.hasErrors('RFC')}" th:errors="*{RFC}"> </small>
 				</div>
 			</div>
-			<div class="form-group row">
-				<label class="col-sm-2 form-col-label">Razon Social</label>
-				<div class="col-sm-6 ">
-					<input type="text" th:field="*{razonSocial}" class="form-control" th:errorClass="alert-danger"/>
+			<div class="control-group">
+				<label class="control-label">Razon Social</label>
+				<div class="controls">
+					<input type="text" th:field="*{razonSocial}" class="span11" th:errorClass="alert-danger"/>
 					<small class="form-text text-danger" th:if="${#fields.hasErrors('razonSocial')}" th:errors="*{razonSocial}"> </small>
 				</div>
 			</div>
 
-			<div class="form-group row">
+			<div class="control-group">
 
-				<div class="col-sm-6 ">
+				<div class="controls">
 
-					<input type="submit"
-						value="Crear Aseguradora" />
+					<input class="btn btn-success" type="submit" value="Crear Aseguradora" />
 				</div>
 			</div>
 
 		</form>
+		
+        </div>
+      </div></div>
+      </div></div>
+		
 	</div>
+	<footer th:replace="HTML/index :: footer"></footer>
+	
 </body>
 </html>

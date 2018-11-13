@@ -1,36 +1,59 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	
-<head th:replace="index :: head">
+
+<head th:replace="HTML/index :: head">
 </head>
 <body>
-<header th:replace="index :: header"></header>
-	<div class="container">
-				<h1 class="text-gray-dark border border-success border-top-0 border-left-0 border-right-0" th:text="${titulo}"></h1>
-	
-		<table class="table">
-			<thead>
-				<tr>
-					<th>id</th>
-					<th>nombre</th>
-					<th>RFC</th>
-					<th>razon Social</th>
-					<th>editar</th>
-					<th>eliminar</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr th:each="aseguradora:${lista}">
-					<td th:text="${aseguradora.id}"></td>
-					<td th:text="${aseguradora.nombre}"></td>
-					<td th:text="${aseguradora.RFC}"></td>
-					<td th:text="${aseguradora.razonSocial}"></td>
-					<td><a class="btn btn-primary btn-xs" th:href="@{/aseguradora/form/}+${aseguradora.id}" th:text="editar"><a></a></td>
-					<td><a class="btn btn-danger btn-xs" th:href="@{/aseguradora/eliminar/}+${aseguradora.id}" th:text="eliminar"><a></a></td>
-				</tr>
-			</tbody>
-		</table>
+	<header th:replace="HTML/index :: header"></header>
+	<sidebar th:replace="HTML/index :: sidebar"></sidebar>
+
+	<div id="content">
+		<div th:replace="HTML/index :: content-header"></div>
+		<div class="container-fluid">
+			<hr>
+			<div class="row-fluid">
+				<div class="span12">
+
+					<div class="widget-box">
+						<div class="widget-title">
+							<span class="icon"><i class="icon-th"></i></span>
+							<h5 th:text="${titulo}">Data table</h5>
+						</div>
+						<div class="widget-content nopadding">
+
+							<table class="table table-bordered data-table">
+								<thead>
+									<tr>
+										<th></th>
+										<th>id</th>
+										<th>nombre</th>
+										<th>RFC</th>
+										<th>razon Social</th>
+										<th>eliminar</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr class="gradeA" th:each="aseguradora:${lista}">
+									<td><a class="icon-edit"
+											th:href="@{/aseguradora/form/}+${aseguradora.id}"
+											th:text="editar"></a></td>
+										<td th:text="${aseguradora.id}"></td>
+										<td th:text="${aseguradora.nombre}"></td>
+										<td th:text="${aseguradora.RFC}"></td>
+										<td th:text="${aseguradora.razonSocial}"></td>
+										
+										<td><a class="btn btn-danger btn-xs"
+											th:href="@{/aseguradora/eliminar/}+${aseguradora.id}"
+											th:text="eliminar"></a></td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
-	<footer th:replace="index :: footer"></footer>
+	<footer th:replace="HTML/index :: footer"></footer>
 </body>
 </html>
