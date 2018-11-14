@@ -10,7 +10,9 @@
 	<div id="content">
 		<div th:replace="HTML/index :: content-header"></div>
 		<div class="container-fluid">
-			<hr>
+		<hr>
+		<div th:replace="HTML/index :: messages"></div>
+			<a th:href="@{form}" class="btn btn-success">Agregar Aseguradora</a>
 			<div class="row-fluid">
 				<div class="span12">
 
@@ -21,7 +23,7 @@
 						</div>
 						<div class="widget-content nopadding">
 
-							<table class="table table-bordered data-table">
+							<table class="table table-bordered data-table dataTable">
 								<thead>
 									<tr>
 										<th></th>
@@ -33,7 +35,7 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr class="gradeA" th:each="aseguradora:${lista}">
+									<tr th:each="aseguradora:${lista}">
 									<td><a class="icon-edit"
 											th:href="@{/aseguradora/form/}+${aseguradora.id}"
 											th:text="editar"></a></td>
@@ -48,6 +50,7 @@
 									</tr>
 								</tbody>
 							</table>
+							<nav th:replace="HTML/util/paginador-nav :: paginador"></nav>
 						</div>
 					</div>
 				</div>

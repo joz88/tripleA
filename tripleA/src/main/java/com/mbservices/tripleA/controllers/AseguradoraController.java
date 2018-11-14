@@ -3,15 +3,21 @@ package com.mbservices.tripleA.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mbservices.tripleA.models.entity.Aseguradora;
 import com.mbservices.tripleA.services.AseguradoraService;
+import com.mbservices.tripleA.utils.paginador.PageRender;
 
 @Controller
 @RequestMapping(value="/aseguradora")
@@ -21,9 +27,15 @@ public class AseguradoraController {
 	private AseguradoraService service;
 	
 	@RequestMapping(value="/listar",method=RequestMethod.GET)
-	public String listar(Model model) {
+	public String listar(@RequestParam(defaultValue="0") Integer page,Model model) {
+		
+		Pageable pageReq = PageRequest.of(page, 5);
+		Page<Aseguradora> aseguradoras = service.findAll(pageReq);
+		
+		PageRender<Aseguradora> pageRender = new PageRender<>("listar",aseguradoras);
 		model.addAttribute("titulo", "Listado de Aseguradoras");
-		model.addAttribute("lista",service.findAll());
+		model.addAttribute("lista",aseguradoras);
+		model.addAttribute("page",pageRender);
 		return "aseguradora/listar";
 	}
 	
@@ -37,11 +49,12 @@ public class AseguradoraController {
 	}
 
 	@RequestMapping(value="/form",method=RequestMethod.POST)
-	public String save(@Valid Aseguradora aseguradora,BindingResult result) {
+	public String save(@Valid Aseguradora aseguradora,BindingResult result,RedirectAttributes messagesFlash) {
 		if(result.hasErrors()){
 			return "aseguradora/form";
 		}
 		service.save(aseguradora);
+		messagesFlash.addFlashAttribute("success","creado con exito");
 		return "redirect:/aseguradora/listar";
 	}
 	

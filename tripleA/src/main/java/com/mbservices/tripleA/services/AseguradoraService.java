@@ -5,6 +5,8 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.mbservices.tripleA.models.entity.Aseguradora;
@@ -39,6 +41,11 @@ public class AseguradoraService implements IAseguradoraService {
 	@Transactional
 	public void delete(Long id) {
 		dao.deleteById(id);
+	}
+
+	@Override
+	public Page<Aseguradora> findAll(Pageable pegeable) {
+		return dao.findAll(pegeable);
 	}
 
 }
