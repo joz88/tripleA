@@ -28,25 +28,25 @@
 
 			<input type="hidden" th:field="*{id}" />
 
-			<div class="control-group">
+			<div class="control-group" th:class="${#fields.hasErrors('nombre')? 'control-group error' : 'control-group'}">
 				<label class="control-label">Nombre</label>
 				<div class="controls">
-					<input type="text" th:field="*{nombre}" class="span11" th:errorClass="border-danger"/>
-					<small class="help-inline text-danger" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"> </small>
+					<input type="text" th:field="*{nombre}" class="span11"/>
+					<small class="help-inline" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"> </small>
 				</div>
 			</div>
-			<div class="control-group">
+			<div class="control-group" th:class="${#fields.hasErrors('RFC')? 'control-group error' : 'control-group'}">
 				<label class="control-label">RFC</label>
 				<div class="controls">
-					<input type="text" th:field="*{RFC}" class="span11" th:errorClass="border-danger" />
-					<small class="help-inline text-danger" th:if="${#fields.hasErrors('RFC')}" th:errors="*{RFC}">  </small>
+					<input type="text" th:field="*{RFC}" class="span11" >
+					<small class="help-inline" th:if="${#fields.hasErrors('RFC')}" th:errors="*{RFC}">  </small>
 				</div>
 			</div>
-			<div class="control-group">
+			<div class="control-group" th:class="${#fields.hasErrors('razonSocial')? 'control-group error' : 'control-group'}">
 				<label class="control-label">Razon Social</label>
 				<div class="controls">
-					<input type="text" th:field="*{razonSocial}" class="span11" th:errorClass="border-danger"/>
-					<small class="help-inline text-danger" th:if="${#fields.hasErrors('razonSocial')}" th:errors="*{razonSocial}"> </small>
+					<input type="text" th:field="*{razonSocial}" class="span11" >
+					<small class="help-inline" th:if="${#fields.hasErrors('razonSocial')}" th:errors="*{razonSocial}"> </small>
 				</div>
 			</div>
 

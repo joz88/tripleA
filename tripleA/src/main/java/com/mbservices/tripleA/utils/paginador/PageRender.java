@@ -25,20 +25,22 @@ public class PageRender<T> {
 		totalPaginas = page.getTotalPages();
 		paginaActual = page.getNumber() + 1;
 		
-		Integer desde,hasta;
-		if(totalPaginas <= numElementosPagina){
+		
+		Integer desde,hasta,paginasX;
+		paginasX=5;
+		if(totalPaginas <= paginasX){
 			desde = 1;
 			hasta = totalPaginas;
 		}else {
-			if(paginaActual <= numElementosPagina/2){
+			if(paginaActual <= paginasX/2){
 				desde = 1;
-				hasta = numElementosPagina;
-			}else if(paginaActual >= totalPaginas- numElementosPagina/2) {
-				desde = totalPaginas - numElementosPagina +1;
+				hasta = paginasX;
+			}else if(paginaActual >= totalPaginas- paginasX/2) {
+				desde = totalPaginas - paginasX +1;
 				hasta = numElementosPagina;
 			}else {
-				desde = paginaActual - numElementosPagina/2;
-				hasta = numElementosPagina;
+				desde = paginasX - paginaActual ;
+				hasta = paginasX;
 			}
 				
 		}
