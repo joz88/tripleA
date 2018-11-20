@@ -1,12 +1,17 @@
 package com.mbservices.tripleA.models.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 
@@ -14,9 +19,6 @@ import javax.validation.constraints.NotEmpty;
 @Table(name = "aseguradoras")
 public class Aseguradora implements Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -3197384613524036530L;
 
 	@Id
@@ -32,6 +34,15 @@ public class Aseguradora implements Serializable {
 	@Column(name = "razon_social")
 	private String razonSocial;
 
+	@OneToMany(mappedBy="aseguradora",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	private List<Ticket> tickets;
+	
+	
+	public Aseguradora() {
+		tickets = new ArrayList<Ticket>();
+	}
+
+	
 	public Long getId() {
 		return id;
 	}
@@ -64,4 +75,15 @@ public class Aseguradora implements Serializable {
 		this.razonSocial = razonSocial;
 	}
 
+	public List<Ticket> getTickets() {
+		return tickets;
+	}
+
+	public void setTickets(List<Ticket> tickets) {
+		this.tickets = tickets;
+	}
+
+	private void addTicket(Ticket ticket) {
+		tickets.add(ticket);
+	}
 }

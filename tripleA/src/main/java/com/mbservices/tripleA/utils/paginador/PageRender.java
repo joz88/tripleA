@@ -1,3 +1,4 @@
+
 package com.mbservices.tripleA.utils.paginador;
 
 import java.util.ArrayList;
@@ -26,21 +27,21 @@ public class PageRender<T> {
 		paginaActual = page.getNumber() + 1;
 		
 		
-		Integer desde,hasta,paginasX;
-		paginasX=5;
-		if(totalPaginas <= paginasX){
+		Integer desde,hasta;
+//		paginasX=5;
+		if(totalPaginas <= numElementosPagina){
 			desde = 1;
 			hasta = totalPaginas;
 		}else {
-			if(paginaActual <= paginasX/2){
+			if(paginaActual <= numElementosPagina/2){
 				desde = 1;
-				hasta = paginasX;
-			}else if(paginaActual >= totalPaginas- paginasX/2) {
-				desde = totalPaginas - paginasX +1;
+				hasta = numElementosPagina;
+			}else if(paginaActual >= totalPaginas- numElementosPagina/2) {
+				desde = totalPaginas - numElementosPagina +1;
 				hasta = numElementosPagina;
 			}else {
-				desde = paginasX - paginaActual ;
-				hasta = paginasX;
+				desde = paginaActual - numElementosPagina/2;
+				hasta = numElementosPagina;
 			}
 				
 		}

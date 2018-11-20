@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -28,6 +29,9 @@ public class Ticket implements Serializable {
 	private String telefonoContacto;
 	private String poliza;
 	private String inciso;
+	
+	@ManyToOne
+	private Aseguradora aseguradora;
 
 	public Long getId() {
 		return id;
@@ -77,4 +81,13 @@ public class Ticket implements Serializable {
 		this.inciso = inciso;
 	}
 
+	public Aseguradora getAseguradora() {
+		return aseguradora;
+	}
+
+	public void setAseguradora(Aseguradora aseguradora) {
+		this.aseguradora = aseguradora;
+	}
+
+	
 }
