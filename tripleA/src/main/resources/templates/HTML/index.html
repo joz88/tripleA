@@ -97,12 +97,23 @@
 		<ul>
 			<li class="active"><a th:href="@{/}"><i
 					class="icon icon-home"></i> <span>Home</span></a></li>
-			<li class="submenu"><a href="#"><i class="icon icon-signal"></i> <span>Aseguradora</span></a>
+			<li class="submenu"><a href="#"><i class="icon icon-folder-close"></i> <span>Aseguradora</span></a>
 				<ul>
-					<li><a th:href="@{/aseguradora/listar}">Lista</a></li>					
+					<li><a th:href="@{/aseguradora/listar}"><i class="icon icon-list"></i><span>Lista Aseguradoras</span></a></li>					
 				</ul>
 			
 			</li>
+			
+			<li class="active"><a th:href="@{/}"><i
+					class="icon icon-home"></i> <span>Home</span></a></li>
+			<li class="submenu"><a href="#"><i class="icon icon-folder-close"></i> <span>Ticket</span></a>
+				<ul>
+					<li><a th:href="@{/ticket/listar}"><i class="icon icon-list"></i><span>Lista Tickets</span></a></li>					
+				</ul>
+			
+			</li>
+			
+			
 			<li><a href="widgets.html"><i class="icon icon-inbox"></i> <span>Widgets</span></a>
 			</li>
 			<li><a href="tables.html"><i class="icon icon-th"></i> <span>Tables</span></a></li>

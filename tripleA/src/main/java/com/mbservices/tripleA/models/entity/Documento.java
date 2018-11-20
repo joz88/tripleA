@@ -22,28 +22,19 @@ public class Documento implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private CarpetaDoc carpetaDoc;
 	private String nombre;
 	@Column(name = "tipo_documento")
 	private String tipoDocumento;
 	private String extension;
 	@Column(name = "unique_id")
 	private String uniqueId;
-
+	
 	public Long getId() {
 		return id;
 	}
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public CarpetaDoc getCarpetaDoc() {
-		return carpetaDoc;
-	}
-
-	public void setCarpetaDoc(CarpetaDoc carpetaDoc) {
-		this.carpetaDoc = carpetaDoc;
 	}
 
 	public String getNombre() {

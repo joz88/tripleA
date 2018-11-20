@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="HTML/index :: head">
+<meta charset="UTF-8">
+<title th:text="${titulo}">Insert title here</title>
+</head>
+<body>
+<header th:replace="HTML/index :: header" ></header>
+<sidebar th:replace="HTML/index :: sidebar"></sidebar>
+<div id="content">
+<div th:replace="HTML/index :: content-header"></div>
+		
+		
+		    <div class="container-fluid">
+  <hr>
+  <div class="row-fluid">
+    <div class="span6">
+      <div class="widget-box">
+        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
+          <h5 th:text="${titulo}">Personal-info</h5>
+        </div>
+        <div class="widget-content nopadding">
+		
+		
+		
+		<form class="form-horizontal" th:action="@{/aseguradora/form}" th:object="${aseguradora}"method="post">
+
+
+			<input type="hidden" th:field="*{id}" />
+
+			<div class="control-group" th:class="${#fields.hasErrors('nombre')? 'control-group error' : 'control-group'}">
+				<label class="control-label">Nombre</label>
+				<div class="controls">
+					<input type="text" th:field="*{nombre}" class="span11"/>
+					<small class="help-inline" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"> </small>
+				</div>
+			</div>
+			<div class="control-group" th:class="${#fields.hasErrors('RFC')? 'control-group error' : 'control-group'}">
+				<label class="control-label">RFC</label>
+				<div class="controls">
+					<input type="text" th:field="*{RFC}" class="span11" >
+					<small class="help-inline" th:if="${#fields.hasErrors('RFC')}" th:errors="*{RFC}">  </small>
+				</div>
+			</div>
+			<div class="control-group" th:class="${#fields.hasErrors('razonSocial')? 'control-group error' : 'control-group'}">
+				<label class="control-label">Razon Social</label>
+				<div class="controls">
+					<input type="text" th:field="*{razonSocial}" class="span11" >
+					<small class="help-inline" th:if="${#fields.hasErrors('razonSocial')}" th:errors="*{razonSocial}"> </small>
+				</div>
+			</div>
+
+			<div class="control-group">
+
+				<div class="controls">
+
+					<input class="btn btn-success" type="submit" value="Crear Aseguradora" />
+				</div>
+			</div>
+
+		</form>
+		
+        </div>
+      </div></div>
+      </div></div>
+		
+	</div>
+	<footer th:replace="HTML/index :: footer"></footer>
+	
+</body>
+</html>

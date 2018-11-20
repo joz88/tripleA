@@ -21,7 +21,6 @@ public class Nota implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	private Tarea tarea;
 	private String texto;
 	private String publicar;
 
@@ -31,14 +30,6 @@ public class Nota implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Tarea getTarea() {
-		return tarea;
-	}
-
-	public void setTarea(Tarea tarea) {
-		this.tarea = tarea;
 	}
 
 	public String getTexto() {

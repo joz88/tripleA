@@ -1,12 +1,19 @@
 package com.mbservices.tripleA.models.entity;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -21,16 +28,24 @@ public class Tarea implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	private Ticket ticket;
 	private Integer secuencia;
 	@Column(name = "nombre_tarea")
 	private String nombreTarea;
 	private String estatus;
 	private String descripcion;
-	@Column(name = "carpeta_doc")
-	private CarpetaDoc carpetaDoc;
 	private String publicar;
+
+	@OneToOne(fetch = FetchType.LAZY)
+	private CarpetaDoc carpetaDoc;
+	
+	@OneToMany(mappedBy="tarea",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name="nota_id")
+	private List<Nota> notas;
+	
+	
+	public Tarea() {
+		this.notas= new ArrayList<Nota>();
+	}
 
 	public Long getId() {
 		return id;
@@ -38,14 +53,6 @@ public class Tarea implements Serializable {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Ticket getTicket() {
-		return ticket;
-	}
-
-	public void setTicket(Ticket ticket) {
-		this.ticket = ticket;
 	}
 
 	public Integer getSecuencia() {
@@ -96,4 +103,15 @@ public class Tarea implements Serializable {
 		this.publicar = publicar;
 	}
 
+	public List<Nota> getNotas() {
+		return notas;
+	}
+
+	public void setNotas(List<Nota> notas) {
+		this.notas = notas;
+	}
+
+	public void addNota(Nota nota){
+		notas.add(nota);
+	}
 }

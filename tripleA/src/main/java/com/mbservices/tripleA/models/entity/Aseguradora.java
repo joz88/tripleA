@@ -83,6 +83,7 @@ public class Aseguradora implements Serializable {
 		this.tickets = tickets;
 	}
 
+	@SuppressWarnings("unused")
 	private void addTicket(Ticket ticket) {
 		tickets.add(ticket);
 	}
