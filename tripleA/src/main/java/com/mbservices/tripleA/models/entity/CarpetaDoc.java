@@ -35,7 +35,7 @@ public class CarpetaDoc implements Serializable {
 	@OneToOne(mappedBy = "carpetaDoc", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	private Tarea tarea;
 	
-	@OneToMany(mappedBy="carpetaDoc",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="documento_id")
 	private List<Documento> documentos;
 	

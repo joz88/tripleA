@@ -38,8 +38,8 @@ public class Tarea implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY)
 	private CarpetaDoc carpetaDoc;
 	
-	@OneToMany(mappedBy="tarea",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinColumn(name="nota_id")
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name="idTarea")
 	private List<Nota> notas;
 	
 	

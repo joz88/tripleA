@@ -39,8 +39,8 @@ public class Ticket implements Serializable {
 	@ManyToOne(optional=false)
 	private Aseguradora aseguradora;
 	
-	@OneToMany(mappedBy="ticket",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
-	@JoinColumn(name="tarea_id")
+	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
+	@JoinColumn(name="idTicket")
 	private List<Tarea> tareas;
 
 	

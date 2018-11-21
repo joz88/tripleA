@@ -11,13 +11,13 @@ import org.springframework.stereotype.Service;
 
 import com.mbservices.tripleA.models.entity.Aseguradora;
 import com.mbservices.tripleA.models.idao.IAseguradoraDao;
-import com.mbservices.tripleA.models.iservices.IAseguradoraService;
+import com.mbservices.tripleA.utils.crud.CrudService;
 
 @Service
-public class AseguradoraService implements IAseguradoraService {
+public class AseguradoraService implements CrudService<Aseguradora,Long> {
 
 	@Autowired 
-	IAseguradoraDao dao;
+	private IAseguradoraDao dao;
 	
 	@Override
 	@Transactional

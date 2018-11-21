@@ -27,7 +27,7 @@
 								<thead>
 									<tr>
 										<th></th>
-										<th>id</th>
+<!-- 										<th>id</th> -->
 										<th>nombre</th>
 										<th>RFC</th>
 										<th>razon Social</th>
@@ -37,9 +37,9 @@
 								<tbody>
 									<tr th:each="aseguradora:${lista}">
 									<td><a class="icon-edit"
-											th:href="@{/aseguradora/form/}+${aseguradora.id}"
+											th:href="@{/aseguradora/edit/}+${aseguradora.id}"
 											th:text="editar"></a></td>
-										<td th:text="${aseguradora.id}"></td>
+<!-- 										<td th:text="${aseguradora.id}"></td> -->
 										<td th:text="${aseguradora.nombre}"></td>
 										<td th:text="${aseguradora.RFC}"></td>
 										<td th:text="${aseguradora.razonSocial}"></td>
