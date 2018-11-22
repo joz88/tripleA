@@ -27,25 +27,28 @@
 								<thead>
 									<tr>
 										<th></th>
-										<th>id</th>
-										<th>nombre</th>
-										<th>RFC</th>
-										<th>razon Social</th>
-										<th>eliminar</th>
+<!-- 										<th>id</th> -->
+										<th>Numero Siniestro</th>
+										<th>Asegurado</th>
+										<th>Telefono Contacto</th>
+										<th>Poliza</th>
+										<th>Inciso</th>
+										<th>Eliminar</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:each="aseguradora:${lista}">
 									<td><a class="icon-edit"
-											th:href="@{/aseguradora/form/}+${aseguradora.id}"
+											th:href="@{/ticket/edit/}+${ticket.id}"
 											th:text="editar"></a></td>
-										<td th:text="${aseguradora.id}"></td>
-										<td th:text="${aseguradora.nombre}"></td>
-										<td th:text="${aseguradora.RFC}"></td>
-										<td th:text="${aseguradora.razonSocial}"></td>
-										
+<!-- 										<td th:text="${aseguradora.id}"></td> -->
+										<td th:text="${aseguradora.numeroSiniestro}"></td>
+										<td th:text="${aseguradora.asegurado}"></td>
+										<td th:text="${aseguradora.telefonoContacto}"></td>
+										<td th:text="${aseguradora.poliza}"></td>
+										<td th:text="${aseguradora.inciso}"></td>
 										<td><a class="btn btn-danger btn-xs"
-											th:href="@{/aseguradora/eliminar/}+${aseguradora.id}"
+											th:href="@{/ticket/eliminar/}+${ticket.id}"
 											th:text="eliminar"></a></td>
 									</tr>
 								</tbody>

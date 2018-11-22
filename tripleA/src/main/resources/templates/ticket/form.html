@@ -5,67 +5,117 @@
 <title th:text="${titulo}">Insert title here</title>
 </head>
 <body>
-<header th:replace="HTML/index :: header" ></header>
-<sidebar th:replace="HTML/index :: sidebar"></sidebar>
-<div id="content">
-<div th:replace="HTML/index :: content-header"></div>
-		
-		
-		    <div class="container-fluid">
-  <hr>
-  <div class="row-fluid">
-    <div class="span6">
-      <div class="widget-box">
-        <div class="widget-title"> <span class="icon"> <i class="icon-align-justify"></i> </span>
-          <h5 th:text="${titulo}">Personal-info</h5>
-        </div>
-        <div class="widget-content nopadding">
-		
-		
-		
-		<form class="form-horizontal" th:action="@{/aseguradora/form}" th:object="${aseguradora}"method="post">
+	<header th:replace="HTML/index :: header"></header>
+	<sidebar th:replace="HTML/index :: sidebar"></sidebar>
+	<div id="content">
+		<div th:replace="HTML/index :: content-header"></div>
 
 
-			<input type="hidden" th:field="*{id}" />
+		<div class="container-fluid">
+			<hr>
+			<div class="row-fluid">
+				<div class="span6">
+					<div class="widget-box">
+						<div class="widget-title">
+							<span class="icon"> <i class="icon-align-justify"></i>
+							</span>
+							<h5 th:text="${titulo}">Personal-info</h5>
+						</div>
+						<div class="widget-content nopadding">
 
-			<div class="control-group" th:class="${#fields.hasErrors('nombre')? 'control-group error' : 'control-group'}">
-				<label class="control-label">Nombre</label>
-				<div class="controls">
-					<input type="text" th:field="*{nombre}" class="span11"/>
-					<small class="help-inline" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"> </small>
+
+
+							<form class="form-horizontal" th:action="@{/ticket/save}"
+								th:object="${modelObject}" method="post">
+								<input type="hidden" th:field="*{id}" />
+								
+								
+								<div class="control-group"
+									th:class="${#fields.hasErrors('aseguradora')? 'control-group error' : 'control-group'}">
+									<label class="control-label" for="buscarAseguradora">Aseguradora</label>
+									<div class="controls">
+									<input type="hidden" th:field="*{aseguradora}" />
+									
+										<input type="text" name="buscarAseguradora" id="buscarAseguradora"
+											class="span11" /> <small class="help-inline"
+											th:if="${#fields.hasErrors('aseguradora')}"
+											th:errors="*{aseguradora}"> </small>
+									</div>
+								</div>
+								
+								
+								<div class="control-group"
+									th:class="${#fields.hasErrors('numeroSiniestro')? 'control-group error' : 'control-group'}">
+									<label class="control-label">Numero Siniestro</label>
+									<div class="controls">
+										<input type="text" th:field="*{numeroSiniestro}"
+											class="span11" /> <small class="help-inline"
+											th:if="${#fields.hasErrors('numeroSiniestro')}"
+											th:errors="*{numeroSiniestro}"> </small>
+									</div>
+								</div>
+								<div class="control-group"
+									th:class="${#fields.hasErrors('asegurado')? 'control-group error' : 'control-group'}">
+									<label class="control-label">Asegurado</label>
+									<div class="controls">
+										<input type="text" th:field="*{asegurado}" class="span11">
+										<small class="help-inline"
+											th:if="${#fields.hasErrors('asegurado')}"
+											th:errors="*{asegurado}"> </small>
+									</div>
+								</div>
+								<div class="control-group"
+									th:class="${#fields.hasErrors('telefonoContacto')? 'control-group error' : 'control-group'}">
+									<label class="control-label">Telefono Contacto</label>
+									<div class="controls">
+										<input type="text" th:field="*{telefonoContacto}"
+											class="span11"> <small class="help-inline"
+											th:if="${#fields.hasErrors('telefonoContacto')}"
+											th:errors="*{telefonoContacto}"> </small>
+									</div>
+								</div>
+
+								<div class="control-group"
+									th:class="${#fields.hasErrors('poliza')? 'control-group error' : 'control-group'}">
+									<label class="control-label">Poliza</label>
+									<div class="controls">
+										<input type="text" th:field="*{poliza}"
+											class="span11"> <small class="help-inline"
+											th:if="${#fields.hasErrors('poliza')}"
+											th:errors="*{poliza}"> </small>
+									</div>
+								</div>
+
+								<div class="control-group"
+									th:class="${#fields.hasErrors('inciso')? 'control-group error' : 'control-group'}">
+									<label class="control-label">Inciso</label>
+									<div class="controls">
+										<input type="text" th:field="*{inciso}"
+											class="span11"> <small class="help-inline"
+											th:if="${#fields.hasErrors('inciso')}"
+											th:errors="*{inciso}"> </small>
+									</div>
+								</div>
+								<div class="control-group">
+
+									<div class="controls">
+
+										<input class="btn btn-success" type="submit"
+											value="Crear Aseguradora" />
+									</div>
+								</div>
+
+							</form>
+
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="control-group" th:class="${#fields.hasErrors('RFC')? 'control-group error' : 'control-group'}">
-				<label class="control-label">RFC</label>
-				<div class="controls">
-					<input type="text" th:field="*{RFC}" class="span11" >
-					<small class="help-inline" th:if="${#fields.hasErrors('RFC')}" th:errors="*{RFC}">  </small>
-				</div>
-			</div>
-			<div class="control-group" th:class="${#fields.hasErrors('razonSocial')? 'control-group error' : 'control-group'}">
-				<label class="control-label">Razon Social</label>
-				<div class="controls">
-					<input type="text" th:field="*{razonSocial}" class="span11" >
-					<small class="help-inline" th:if="${#fields.hasErrors('razonSocial')}" th:errors="*{razonSocial}"> </small>
-				</div>
-			</div>
+		</div>
 
-			<div class="control-group">
-
-				<div class="controls">
-
-					<input class="btn btn-success" type="submit" value="Crear Aseguradora" />
-				</div>
-			</div>
-
-		</form>
-		
-        </div>
-      </div></div>
-      </div></div>
-		
 	</div>
 	<footer th:replace="HTML/index :: footer"></footer>
+	<script type="text/javascript" th:replace="HTML/util/autocomplete :: javascript"></script>
 	
 </body>
 </html>

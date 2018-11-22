@@ -28,7 +28,7 @@ public class Documento implements Serializable {
 	private String extension;
 	@Column(name = "unique_id")
 	private String uniqueId;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -68,5 +68,4 @@ public class Documento implements Serializable {
 	public void setUniqueId(String uniqueId) {
 		this.uniqueId = uniqueId;
 	}
-
 }

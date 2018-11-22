@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<script type="text/javascript" th:fragment="javascript">
+$('#buscarAseguradora').autocomplete({
+	source: function(request,response){
+		$.ajax({
+			url:'/ticket/acAseguradora/'+request.term,
+			dataType:'json',
+			data:{
+				term:request.term
+			},
+			success:function(data){
+				response($.map(data,function(item){
+					return{
+						value: item.id, label:item.nombre
+					};
+				}));
+			}
+		});
+	},
+	select: function(event,ui){
+		$('#buscarAseguradora').val(ui.item.label);
+		$('#aseguradora').val(ui.item.value);
+		return false;
+	}
+});
+</script>
+</body>
+</html>

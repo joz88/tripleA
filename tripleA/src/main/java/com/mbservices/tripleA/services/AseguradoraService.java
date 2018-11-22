@@ -40,12 +40,24 @@ public class AseguradoraService implements CrudService<Aseguradora,Long> {
 	@Override
 	@Transactional
 	public void delete(Long id) {
-		dao.deleteById(id);
+		this.dao.deleteById(id);
 	}
 
 	@Override
 	public Page<Aseguradora> findAll(Pageable pegeable) {
 		return dao.findAll(pegeable);
+	}
+
+	@Transactional
+	public List<Aseguradora> findByNombre(String term){
+		List<Aseguradora> l =this.dao.findByNombre(term);
+		if (l.isEmpty()) {
+			Aseguradora a = new Aseguradora();
+			a.setNombre("Sin Datos");
+			a.setId(new Long(0));
+			l.add(a);
+		}
+		return l;
 	}
 
 }

@@ -31,11 +31,12 @@ public class Ticket implements Serializable {
 	@Column(name = "numero_siniestro")
 	private String numeroSiniestro;
 	private String asegurado;
+	private String estatus;
 	@Column(name = "telefono_contacto")
 	private String telefonoContacto;
 	private String poliza;
 	private String inciso;
-	
+
 	@ManyToOne(optional=false)
 	private Aseguradora aseguradora;
 	
@@ -116,4 +117,13 @@ public class Ticket implements Serializable {
 	public void addTarea(Tarea tarea) {
 		tareas.add(tarea);		
 	}
+
+	public String getEstatus() {
+		return estatus;
+	}
+
+	public void setEstatus(String estatus) {
+		this.estatus = estatus;
+	}
+
 }

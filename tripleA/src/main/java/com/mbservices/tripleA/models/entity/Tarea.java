@@ -114,4 +114,6 @@ public class Tarea implements Serializable {
 	public void addNota(Nota nota){
 		notas.add(nota);
 	}
+
+	
 }

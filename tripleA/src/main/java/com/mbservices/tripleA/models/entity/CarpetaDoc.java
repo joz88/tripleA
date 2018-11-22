@@ -38,7 +38,7 @@ public class CarpetaDoc implements Serializable {
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	@JoinColumn(name="documento_id")
 	private List<Documento> documentos;
-	
+
 	
 	public CarpetaDoc() {
 		this.documentos= new ArrayList<Documento>();
@@ -58,6 +58,22 @@ public class CarpetaDoc implements Serializable {
 
 	public void setNombreCarpeta(String nombreCarpeta) {
 		this.nombreCarpeta = nombreCarpeta;
+	}
+
+	public Tarea getTarea() {
+		return tarea;
+	}
+
+	public void setTarea(Tarea tarea) {
+		this.tarea = tarea;
+	}
+
+	public List<Documento> getDocumentos() {
+		return documentos;
+	}
+
+	public void setDocumentos(List<Documento> documentos) {
+		this.documentos = documentos;
 	}
 
 }

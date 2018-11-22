@@ -20,14 +20,8 @@
           <h5 th:text="${titulo}">Personal-info</h5>
         </div>
         <div class="widget-content nopadding">
-		
-		
-		
-		<form class="form-horizontal" th:action="@{/aseguradora/save}" th:object="${aseguradora}"method="post">
-
-
+		<form class="form-horizontal" th:action="@{/aseguradora/save}" th:object="${modelObject}"method="post">
 			<input type="hidden" th:field="*{id}" />
-
 			<div class="control-group" th:class="${#fields.hasErrors('nombre')? 'control-group error' : 'control-group'}">
 				<label class="control-label">Nombre</label>
 				<div class="controls">

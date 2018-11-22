@@ -1,15 +1,8 @@
 package com.mbservices.tripleA.controllers;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mbservices.tripleA.models.entity.Aseguradora;
 import com.mbservices.tripleA.services.AseguradoraService;
@@ -36,7 +29,12 @@ public class AseguradoraController extends CrudController<Aseguradora, Long> {
 		this.service = service;
 	}
 	
+	@Override
+	public Aseguradora getNewModel() {
+		return new Aseguradora();
+	}
 	
+		
 //	@RequestMapping(value="/listar",method=RequestMethod.GET)
 //	public String listar(@RequestParam(defaultValue="0") Integer page,Model model) {
 //		
@@ -52,43 +50,45 @@ public class AseguradoraController extends CrudController<Aseguradora, Long> {
 	
 	
 
-	@RequestMapping(value="/form")
-	public String crear(Model model) {
-		Aseguradora aseguradora = new Aseguradora();
-		model.addAttribute("titulo","FormularioAseguradora");
-		model.addAttribute("aseguradora", aseguradora);
-		
-		return "aseguradora/form";
-	}
+//	@RequestMapping(value="/form")
+//	public String crear(Model model) {
+//		Aseguradora aseguradora = new Aseguradora();
+//		model.addAttribute("titulo","FormularioAseguradora");
+//		model.addAttribute("aseguradora", aseguradora);
+//		
+//		return "aseguradora/form";
+//	}
 
-	@RequestMapping(value="/save",method=RequestMethod.POST)
-	public String save(@Valid Aseguradora aseguradora,BindingResult result,RedirectAttributes messagesFlash) {
-		if(result.hasErrors()){
-			return "aseguradora/form";
-		}
-		service.save(aseguradora);
-		messagesFlash.addFlashAttribute("success","creado con exito");
-		return "redirect:/aseguradora/listar";
-	}
+//	@RequestMapping(value="/save",method=RequestMethod.POST)
+//	public String save(@Valid Aseguradora aseguradora,BindingResult result,RedirectAttributes messagesFlash) {
+//		if(result.hasErrors()){
+//			return "aseguradora/form";
+//		}
+//		service.save(aseguradora);
+//		messagesFlash.addFlashAttribute("success","creado con exito");
+//		return "redirect:/aseguradora/listar";
+//	}
 	
-	@RequestMapping(value="/edit/{id}")
-	public String edit(@PathVariable Long id, Model model) {
-		Aseguradora aseguradora=null;
-		if(id>0){
-			aseguradora=service.findById(id);
-		}else{
-			return "redirect:/aseguradora/listar";
-		}
-		model.addAttribute("titulo","FormularioAseguradora");
-		model.addAttribute("aseguradora", aseguradora);
-		return "aseguradora/form";
-	}
+//	@RequestMapping(value="/edit/{id}")
+//	public String edit(@PathVariable Long id, Model model) {
+//		Aseguradora aseguradora=null;
+//		if(id>0){
+//			aseguradora=service.findById(id);
+//		}else{
+//			return "redirect:/aseguradora/listar";
+//		}
+//		model.addAttribute("titulo","FormularioAseguradora");
+//		model.addAttribute("aseguradora", aseguradora);
+//		return "aseguradora/form";
+//	}
 	
-	@RequestMapping(value="/eliminar/{id}")
-	public String delete(@PathVariable Long id){
-		if(id>0){
-			service.delete(id);
-		}
-		return "redirect:/aseguradora/listar";
-	}
+//	@RequestMapping(value="/eliminar/{id}")
+//	public String delete(@PathVariable Long id){
+//		if(id>0){
+//			service.delete(id);
+//		}
+//		return "redirect:/aseguradora/listar";
+//	}
+
+	
 }

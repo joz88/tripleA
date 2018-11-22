@@ -26,6 +26,7 @@ public class Aseguradora implements Serializable {
 	private Long id;
 
 	@NotEmpty
+	@Column(name="nombre",columnDefinition = "VARCHAR(25)")
 	private String nombre;
 	@NotEmpty
 	private String RFC;
@@ -33,10 +34,11 @@ public class Aseguradora implements Serializable {
 	@NotEmpty
 	@Column(name = "razon_social")
 	private String razonSocial;
-
+	
 	@OneToMany(mappedBy="aseguradora",fetch=FetchType.LAZY, cascade=CascadeType.ALL)
 	private List<Ticket> tickets;
 	
+
 	
 	public Aseguradora() {
 		tickets = new ArrayList<Ticket>();
