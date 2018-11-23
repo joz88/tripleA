@@ -56,6 +56,7 @@ public abstract class CrudController<T, K> {
 	}
 	
 	public abstract T getNewModel();
+	  protected abstract void addAdditionalObjectsToModel(Model model, T paramT);
 
 
 	/**
@@ -120,6 +121,7 @@ public abstract class CrudController<T, K> {
 		}
 		model.addAttribute("titulo",this.env.getProperty(submodName + ".form"));
 		model.addAttribute("modelObject", modelObject);
+		addAdditionalObjectsToModel(model, modelObject);
 		return this.submodName +"/form";
 	}
 	

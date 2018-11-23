@@ -37,16 +37,17 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="aseguradora:${lista}">
+									<tr th:each="ticket:${lista}">
 									<td><a class="icon-edit"
 											th:href="@{/ticket/edit/}+${ticket.id}"
 											th:text="editar"></a></td>
-<!-- 										<td th:text="${aseguradora.id}"></td> -->
-										<td th:text="${aseguradora.numeroSiniestro}"></td>
-										<td th:text="${aseguradora.asegurado}"></td>
-										<td th:text="${aseguradora.telefonoContacto}"></td>
-										<td th:text="${aseguradora.poliza}"></td>
-										<td th:text="${aseguradora.inciso}"></td>
+<!-- 										<td th:text="${ticket.id}"></td> -->
+										<td th:text="${ticket.aseguradora.nombre}"></td>
+										<td th:text="${ticket.numeroSiniestro}"></td>
+										<td th:text="${ticket.asegurado}"></td>
+										<td th:text="${ticket.telefonoContacto}"></td>
+										<td th:text="${ticket.poliza}"></td>
+										<td th:text="${ticket.inciso}"></td>
 										<td><a class="btn btn-danger btn-xs"
 											th:href="@{/ticket/eliminar/}+${ticket.id}"
 											th:text="eliminar"></a></td>

@@ -37,7 +37,7 @@ public class Ticket implements Serializable {
 	private String poliza;
 	private String inciso;
 
-	@ManyToOne(optional=false)
+	@ManyToOne(fetch=FetchType.LAZY,optional=false)
 	private Aseguradora aseguradora;
 	
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)

@@ -12,4 +12,6 @@ public interface IAseguradoraDao extends PagingAndSortingRepository<Aseguradora,
 	@Query("select a from Aseguradora as a where a.nombre like %?1%")
 	public List<Aseguradora> findByNombre(String term);
 	
+	public List<Aseguradora> findByNombreLikeIgnoreCase(String term);
+	
 }

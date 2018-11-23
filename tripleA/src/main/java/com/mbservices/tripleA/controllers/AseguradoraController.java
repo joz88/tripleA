@@ -2,6 +2,7 @@ package com.mbservices.tripleA.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.mbservices.tripleA.models.entity.Aseguradora;
@@ -32,6 +33,12 @@ public class AseguradoraController extends CrudController<Aseguradora, Long> {
 	@Override
 	public Aseguradora getNewModel() {
 		return new Aseguradora();
+	}
+
+	@Override
+	protected void addAdditionalObjectsToModel(Model model, Aseguradora paramT) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 		

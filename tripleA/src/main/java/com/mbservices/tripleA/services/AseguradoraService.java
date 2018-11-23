@@ -50,7 +50,7 @@ public class AseguradoraService implements CrudService<Aseguradora,Long> {
 
 	@Transactional
 	public List<Aseguradora> findByNombre(String term){
-		List<Aseguradora> l =this.dao.findByNombre(term);
+		List<Aseguradora> l =this.dao.findByNombreLikeIgnoreCase("%"+term+"%");
 		if (l.isEmpty()) {
 			Aseguradora a = new Aseguradora();
 			a.setNombre("Sin Datos");
@@ -60,4 +60,8 @@ public class AseguradoraService implements CrudService<Aseguradora,Long> {
 		return l;
 	}
 
+	@Transactional
+	public String getNombreByid(Long id){
+		return this.findById(id).getNombre();
+	}
 }
