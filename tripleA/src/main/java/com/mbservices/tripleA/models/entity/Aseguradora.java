@@ -26,7 +26,7 @@ public class Aseguradora implements Serializable {
 	private Long id;
 
 	@NotEmpty
-	@Column(name="nombre",columnDefinition = "VARCHAR(25)")
+	@Column(name="nombre",columnDefinition = "VARCHAR(50)")
 	private String nombre;
 	@NotEmpty
 	private String RFC;
