@@ -5,11 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import com.mbservices.tripleA.models.entity.Tarea;
 import com.mbservices.tripleA.models.idao.ITareaDao;
 import com.mbservices.tripleA.utils.crud.CrudService;
 
+@Service
 public class TareaService implements CrudService<Tarea, Long> {
 
 	@Autowired

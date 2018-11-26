@@ -5,15 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mbservices.tripleA.models.entity.Aseguradora;
 import com.mbservices.tripleA.models.entity.Tarea;
 import com.mbservices.tripleA.models.entity.Ticket;
 import com.mbservices.tripleA.services.AseguradoraService;
+import com.mbservices.tripleA.services.TareaService;
 import com.mbservices.tripleA.services.TicketService;
 import com.mbservices.tripleA.utils.crud.CrudController;
 
@@ -27,7 +28,8 @@ public class TicketController extends CrudController<Ticket, Long> {
 
 	@Autowired
 	private TicketService service;
-	
+	@Autowired
+	private TareaService tareaService;
 	@Autowired
 	private AseguradoraService aseguradoraService;
 	
@@ -46,17 +48,28 @@ public class TicketController extends CrudController<Ticket, Long> {
 		return new Ticket();
 	}
 	
-	@GetMapping(value="/acAseguradora/{term}",produces="application/json")
+	@RequestMapping(value="/acAseguradora/{term}",produces="application/json")
 	public @ResponseBody List<Aseguradora> asAseguradora(@PathVariable String term){
 		List<Aseguradora> lista = aseguradoraService.findByNombre(term);
 		return lista;
 	}
 
+		
 	@Override
 	protected void addAdditionalObjectsToModel(Model model, Ticket object) {
 		model.addAttribute("nombreAseguradora", this.aseguradoraService.getNombreByid(object.getId()));
 		model.addAttribute("titulo1","Datos de Generales");
 		model.addAttribute("titulo2","Datos de Seguimiento");
-		model.addAttribute("tareaV", new Tarea());
+		model.addAttribute("tareas", object.getTareas());
+	}
+	
+
+	@RequestMapping(value="/addTarea",method=RequestMethod.POST)
+	public @ResponseBody String saveFromTicket(Model model,Tarea tarea,Long idTicket){
+		Ticket ticket = service.findById(idTicket);
+		ticket.addTarea(tarea);
+		this.service.save(ticket);
+		return "ok";
+		
 	}
 }
