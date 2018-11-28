@@ -85,8 +85,9 @@ public abstract class CrudController<T, K> {
 	 */
 	@RequestMapping(value="/form")
 	public String crear(Model model) {
+		T modelObject= getNewModel();
 		model.addAttribute("titulo",this.env.getProperty(submodName + ".form"));
-		model.addAttribute("modelObject", getNewModel());
+		model.addAttribute(getNameObject(modelObject.getClass().getName()), modelObject);
 		return this.submodName +"/form";
 	}
 	
@@ -120,7 +121,7 @@ public abstract class CrudController<T, K> {
 			return "redirect:/"+this.submodName+"/lista";
 		}
 		model.addAttribute("titulo",this.env.getProperty(submodName + ".form"));
-		model.addAttribute("modelObject", modelObject);
+		model.addAttribute(getNameObject(modelObject.getClass().getName()), modelObject);
 		addAdditionalObjectsToModel(model, modelObject);
 		return this.submodName +"/form";
 	}
@@ -136,4 +137,8 @@ public abstract class CrudController<T, K> {
 		return "redirect:/"+this.submodName +"/lista";
 	}
 	
+	private String getNameObject(String fullObject){
+		String [] str = fullObject.split("\\.");
+		return str[str.length-1].toLowerCase();
+	}
 }

@@ -24,7 +24,7 @@
 						<div class="widget-content nopadding">
 
 							<form class="form-horizontal" th:action="@{/ticket/save}"
-								th:object="${modelObject}" method="post">
+								th:object="${ticket}" method="post">
 								<input type="hidden" th:field="*{id}" />
 								<div class="control-group"
 									th:class="${#fields.hasErrors('aseguradora')? 'control-group error' : 'control-group'}">
@@ -107,7 +107,7 @@
 					</div>
 				</div>
 
-				<div th:if="${modelObject.id}" class="span7">
+				<div th:if="${ticket.id}" class="span7">
 					<div class="widget-box">
 						<div class="widget-title">
 							<span class="icon"> <i class="icon-align-justify"></i></span>
@@ -116,13 +116,12 @@
 								class="btn btn-success element-right">AGREGAR TAREA</a>
 						</div>
 						<div class="widget-content">
-							<div th:each="tarea : ${tareas}">
+							<div class="sortable" th:id="${in.index}" th:each="tarea,in : ${tareas}">
 								<div class="accordion" id="collapse-group">
 									<div class="accordion-group widget-box">
 										<div class="accordion-heading">
 											<div class="widget-title">
-												<a data-parent="#collapse-group" th:href="@{#collapseG}+${tarea.id}"  data-toggle="collapse"> <span
-													class="icon"><i class="icon-ok"></i></span>
+												<a data-parent="#collapse-group" th:href="@{#collapseG}+${tarea.id}"  data-toggle="collapse"> <span class="icon" th:text="${tarea.secuencia}"></span>
 													<h5 th:text="${tarea.nombreTarea}">Accordion option1</h5>
 												</a>
 											</div>
@@ -220,6 +219,16 @@ function guardarTarea(){
         }
     });
 }
+
+
+
+$( ".sortable" ).parent().sortable({
+    update:function(event,ui){
+    		console.log(event.toElement.nextElementSibling.id);
+    		console.log(event);
+
+     }
+  });
 </script>
 </body>
 </html>

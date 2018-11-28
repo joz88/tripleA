@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="HTML/index :: head">
-<meta charset="UTF-8">
+<meta charset="UTF-8"/>
 <title th:text="${titulo}">Insert title here</title>
 </head>
 <body>
@@ -20,8 +20,8 @@
           <h5 th:text="${titulo}">Personal-info</h5>
         </div>
         <div class="widget-content nopadding">
-		<form class="form-horizontal" th:action="@{/aseguradora/save}" th:object="${modelObject}"method="post">
-			<input type="hidden" th:field="*{id}" />
+		<form class="form-horizontal" th:action="@{/aseguradora/save}" th:object="${aseguradora}"method="post">
+			<input type="hidden" th:field="*{id}"/>
 			<div class="control-group" th:class="${#fields.hasErrors('nombre')? 'control-group error' : 'control-group'}">
 				<label class="control-label">Nombre</label>
 				<div class="controls">
