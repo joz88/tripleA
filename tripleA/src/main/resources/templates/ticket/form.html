@@ -112,8 +112,7 @@
 						<div class="widget-title">
 							<span class="icon"> <i class="icon-align-justify"></i></span>
 							<h5 th:text="${titulo2}">Personal-info</h5>
-							<a href="#myModal" data-toggle="modal"
-								class="btn btn-success element-right">AGREGAR TAREA</a>
+							<a href="#myModal" data-toggle="modal" class="btn btn-success element-right">AGREGAR TAREA</a>
 						</div>
 						<div class="widget-content">
 							<div class="sortable" th:id="${in.index}" th:each="tarea,in : ${tareas}">
@@ -124,6 +123,7 @@
 												<a data-parent="#collapse-group" th:href="@{#collapseG}+${tarea.id}"  data-toggle="collapse"> <span class="icon" th:text="${tarea.secuencia}"></span>
 													<h5 th:text="${tarea.nombreTarea}">Accordion option1</h5>
 												</a>
+												<button class="btn btn-success element-right">accion</button>
 											</div>
 										</div>
 										<div class="accordion-body collapse"

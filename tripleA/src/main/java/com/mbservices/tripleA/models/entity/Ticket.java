@@ -16,6 +16,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "tickets")
 public class Ticket implements Serializable {
@@ -38,6 +40,7 @@ public class Ticket implements Serializable {
 	private String inciso;
 
 	@ManyToOne(fetch=FetchType.LAZY,optional=false)
+    @JsonBackReference
 	private Aseguradora aseguradora;
 	
 	@OneToMany(fetch=FetchType.LAZY, cascade=CascadeType.ALL)
